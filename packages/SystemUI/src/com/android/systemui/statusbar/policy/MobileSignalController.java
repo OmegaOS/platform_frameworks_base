@@ -52,7 +52,6 @@ import java.util.BitSet;
 import java.util.Objects;
 import java.util.List;
 
-
 public class MobileSignalController extends SignalController<
         MobileSignalController.MobileState, MobileSignalController.MobileIconGroup> {
     private final TelephonyManager mPhone;
@@ -411,6 +410,12 @@ public class MobileSignalController extends SignalController<
         if (mStyle != STATUS_BAR_STYLE_EXTENDED) {
             return false;
         }
+        callback.setMobileDataIndicators(statusIcon, qsIcon, typeIcon, qsTypeIcon,
+                activityIn, activityOut, dataContentDescription, description, icons.mIsWide,
+                mSubscriptionInfo.getSubscriptionId(), isMobileIms());
+    }
+
+    private boolean isMobileIms() {
 
         List<SubscriptionInfo> subInfos = SubscriptionManager.from(mContext)
                         .getActiveSubscriptionInfoList();
